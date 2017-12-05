@@ -13,9 +13,9 @@
     <div class="header">
         <div class="menu">
             <ul>
-                <li><a href="/">Главная</a></li>
-                <li><a href="/simplex">Симплекc Метод</a></li>
-                <li><a href="/genetic">Генетический алгоритм</a></li>
+                <li><a href="">Главная</a></li>
+                <li><a href="simplex">Симплекc Метод</a></li>
+                <li><a href="genetic">Генетический алгоритм</a></li>
             </ul>
         </div>
     </div>

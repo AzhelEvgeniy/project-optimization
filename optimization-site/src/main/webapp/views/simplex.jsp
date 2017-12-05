@@ -14,9 +14,9 @@
         <div class="header">
             <div class="menu">
                 <ul>
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="/simplex">Симплекc Метод</a></li>
-                    <li><a href="/genetic">Генетический алгоритм</a></li>
+                    <li><a href="main">Главная</a></li>
+                    <li><a href="simplex">Симплекc Метод</a></li>
+                    <li><a href="genetic">Генетический алгоритм</a></li>
                 </ul>
                 <div class="user">
                     Добро пожаловать, ${username}.<br/>
@@ -33,7 +33,7 @@
             <p>Симплекс-метод - это итеративный процесс направленного решения системы уравнений по шагам, который начинается с опорного решения и в поисках лучшего варианта движется по угловым точкам области допустимого решения, улучшающих значение целевой функции до тех пор, пока целевая функция не достигнет оптимального значения.</p>
             <div class="function">
                 Математическая модель
-                <form id="functionForm" name="functionForm" action="/simplex/result" method="post" onsubmit="return validate();">
+                <form id="functionForm" name="functionForm" action="simplex" method="post" onsubmit="return validate();">
                     <p><label>Целевая функция: </label>
                         <input type="text" id="targetFunction" name="targetFunction" value="${targetFunction}"/>
                         <span id="errorTargetFunction" class="error"></span>

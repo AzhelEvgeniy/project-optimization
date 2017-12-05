@@ -14,9 +14,9 @@
     <div class="header">
         <div class="menu">
             <ul>
-                <li><a href="/">Главная</a></li>
-                <li><a href="/simplex">Симплекc Метод</a></li>
-                <li><a href="/genetic">Генетический алгоритм</a></li>
+                <li><a href="main">Главная</a></li>
+                <li><a href="simplex">Симплекc Метод</a></li>
+                <li><a href="genetic">Генетический алгоритм</a></li>
             </ul>
             <div class="user">
                 Добро пожаловать, ${username}.<br/>
@@ -33,7 +33,7 @@
         <p>Генети́ческий алгори́тм (англ. genetic algorithm) — это эвристический алгоритм поиска, используемый для решения задач оптимизации и моделирования путём случайного подбора, комбинирования и вариации искомых параметров с использованием механизмов, аналогичных естественному отбору в природе.</p>
         <div class="function">
             Математическая модель
-            <form id="functionForm" action="/genetic/result" method="post" onsubmit="return validate();">
+            <form id="functionForm" action="genetic" method="post" onsubmit="return validate();">
                 <p><label>Целевая функция: </label>
                     <input type="text" id="targetFunction" name="targetFunction" value="${targetFunction}"/>
                     <span id="errorTargetFunction" class="error"></span>

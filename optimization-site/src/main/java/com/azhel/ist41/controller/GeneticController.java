@@ -26,7 +26,7 @@ public class GeneticController {
         return "views/genetic";
     }
 
-    @RequestMapping(value = "genetic/result",method = RequestMethod.POST)
+    @RequestMapping(value = "genetic",method = RequestMethod.POST)
     public String geneticCalculate(ModelMap model, @RequestParam String targetFunction,
                                    @RequestParam String countLimit,
                                    @RequestParam int countChromosomeInGeneration,

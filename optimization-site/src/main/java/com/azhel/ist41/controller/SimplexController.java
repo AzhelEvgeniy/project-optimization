@@ -26,7 +26,7 @@ public class SimplexController {
         model.addAttribute("username", name);
         return "views/simplex";
     }
-    @RequestMapping(value = "simplex/result",method = RequestMethod.POST)
+    @RequestMapping(value = "simplex",method = RequestMethod.POST)
     public String simplexCalculate(ModelMap model, @RequestParam String targetFunction,
                                    @RequestParam String countLimit,
                                    @RequestParam String MaxMin,

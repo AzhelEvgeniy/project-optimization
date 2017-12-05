@@ -1,0 +1,43 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+    <http use-expressions="true">
+
+        <intercept-url pattern="/main" access="isAuthenticated()" />
+        <intercept-url pattern="/simplex*" access="isAuthenticated()" />
+        <intercept-url pattern="/genetic*" access="isAuthenticated()" />
+        <!--<intercept-url pattern="/**" requires-channel="https" />-->
+        <!---->
+        <!--<port-mappings>-->
+            <!--<port-mapping http="8080" https="8181"/>-->
+        <!--</port-mappings>-->
+
+        <form-login login-page='/login'
+                    default-target-url="/main"
+                    authentication-failure-url="/login?error=true"
+                    username-parameter="user_login"
+                    password-parameter="password_login"/>
+
+        <logout logout-success-url="/" logout-url="/logout" />
+
+        <remember-me data-source-ref="dataSource"/>
+    </http>
+
+    <authentication-manager>
+        <authentication-provider>
+            <password-encoder ref="bcrypt" />
+          <!--  <user-service>
+                <user name="user" password="upass" authorities="ROLE_USER" />
+            </user-service> -->
+            <jdbc-user-service data-source-ref="dataSource" />
+        </authentication-provider>
+    </authentication-manager>
+
+    <beans:bean id="bcrypt" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" >
+        <beans:constructor-arg name="strength" value="10" />
+    </beans:bean>
+</beans:beans>

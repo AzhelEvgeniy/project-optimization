@@ -1,7 +1,16 @@
 var countLimitNow = 0;
 function addInputTextLimits() {
+
 	var countLimit = document.getElementById("countLimit").value;
 	var container = document.getElementById("functionForm");
+    //validate
+    var errorCountLimit = document.getElementById("errorCountLimit");
+    if(countLimit <= 0){
+        errorCountLimit.innerHTML = "Количество ограничений не может быть нулевым или отрицательным";
+        return false;
+    } else
+    errorCountLimit.innerHTML = "";
+
 	// Clear previous contents of the container
             for (i=0;i<countLimitNow;i++){
                 container.removeChild(container.lastChild);

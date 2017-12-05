@@ -52,7 +52,8 @@
                     <c:if test="${empty answer}">
                         <label>Количество ограниений: </label>
                         <input type="number" id="countLimit" name="countLimit"  step="1" max="7" min="0" value="${countLimit + 0}" />
-                        <input type="button" name="btnCountLimit" value="Далее" onClick="addInputTextLimits()">
+                        <input type="button" name="btnCountLimit" value="Далее" onClick="return addInputTextLimits();">
+                        <span id="errorCountLimit" class="error"></span>
                     </c:if>
                         <c:if test="${not empty countLimit}">
                         <div>Ограничения:</div>

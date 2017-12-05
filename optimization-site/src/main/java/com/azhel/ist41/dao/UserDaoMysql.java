@@ -1,6 +1,8 @@
 package com.azhel.ist41.dao;
 
+import com.azhel.ist41.dao.exception.DuplicateUserNameException;
 import com.azhel.ist41.model.User;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +18,7 @@ public class UserDaoMysql implements UserDao {
     DataSource dataSource;
 
     @Override
-    public void addUser(User user) {
+    public void addUser(User user) throws DuplicateUserNameException{
         final String INSERT_SQL = "INSERT INTO users (username, password, enabled) VALUE (?, ?, ?)";
         final String INSERT_SQL_ROLE = "INSERT INTO authorities (username, authority) VALUE (?, \"ROLE_USER\")";
         Connection conn = null;
@@ -36,10 +38,10 @@ public class UserDaoMysql implements UserDao {
             ps.setString(1, user.getUsername());
             ps.executeUpdate();
             ps.close();
-
+        } catch (MySQLIntegrityConstraintViolationException ex){
+            throw new DuplicateUserNameException("Dublicate user name " + user.getUsername(), ex);
         } catch (SQLException e) {
             throw new RuntimeException(e);
-
         } finally {
             if (conn != null) {
                 try {

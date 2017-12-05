@@ -1,5 +1,6 @@
 package com.azhel.ist41.controller;
 
+import com.azhel.ist41.dao.exception.DuplicateUserNameException;
 import com.azhel.ist41.model.User;
 import com.azhel.ist41.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,19 +43,24 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(ModelMap model, @RequestParam String user_login, @RequestParam String password_login,
                               @RequestParam String confirmPassword){
-        User user = new User();
-        user.setUsername(user_login);
-        user.setPassword(password_login);
-        user.setConfirmPassword(confirmPassword);
+        try {
+            User user = new User();
+            user.setUsername(user_login);
+            user.setPassword(password_login);
+            user.setConfirmPassword(confirmPassword);
 
-        userService.addUser(user);
+            userService.addUser(user);
 
-        if (!password_login.equals(confirmPassword)){
-            model.addAttribute("error", "Passwords not equals");
+            if (!password_login.equals(confirmPassword)) {
+                model.addAttribute("error", "Passwords not equals");
+                return "views/registration";
+            }
+            return "redirect:/login";
+        }
+        catch (DuplicateUserNameException ex){
+            model.addAttribute("error", ex.getMessage());
             return "views/registration";
         }
-        return "redirect:/login";
-
     }
 
     @RequestMapping("/logout")

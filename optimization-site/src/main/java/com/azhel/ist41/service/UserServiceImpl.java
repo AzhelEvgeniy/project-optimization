@@ -1,6 +1,7 @@
 package com.azhel.ist41.service;
 
 import com.azhel.ist41.dao.UserDao;
+import com.azhel.ist41.dao.exception.DuplicateUserNameException;
 import com.azhel.ist41.model.User;
 import com.azhel.ist41.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class UserServiceImpl implements UserService {
     BCryptPasswordEncoder bcrypt;
 
     @Override
-    public void addUser(User user) {
+    public void addUser(User user) throws DuplicateUserNameException {
         user.setPassword(bcrypt.encode(user.getPassword()));
         user.setEnabled(1);
         user.setRole(new HashSet<Role>(){{
